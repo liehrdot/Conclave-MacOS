@@ -187,7 +187,7 @@ struct CardTable: View {
             }
             .width(min: 160, ideal: 240)
             TableColumn("Cost") { row in
-                ManaCostView(cost: row.facts?.manaCost ?? "")
+                ManaText(row.facts?.manaCost ?? "")
             }
             .width(min: 60, ideal: 96)
             TableColumn("Type") { row in
@@ -216,38 +216,6 @@ struct CardTable: View {
     }
 }
 
-/// A mana cost as small coloured circles. Magic's own symbol font comes in a later step.
-struct ManaCostView: View {
-    let cost: String
-
-    var body: some View {
-        let symbols = ManaCost.symbols(cost)
-        HStack(spacing: 2) {
-            ForEach(Array(symbols.enumerated()), id: \.offset) { _, symbol in
-                Text(symbol)
-                    .font(.system(size: symbol.count > 2 ? 6 : 9, weight: .bold, design: .rounded))
-                    .foregroundStyle(.black)
-                    .frame(width: 15, height: 15)
-                    .background(Circle().fill(Self.fill(symbol)))
-            }
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(symbols.joined(separator: " "))
-    }
-
-    /// Magic's own pip colours (content, like the card art), the same as the iPhone app's.
-    static func fill(_ symbol: String) -> Color {
-        switch ManaCost.color(of: symbol) {
-        case "W": Color(red: 1.00, green: 0.98, blue: 0.84)
-        case "U": Color(red: 0.67, green: 0.88, blue: 0.98)
-        case "B": Color(red: 0.80, green: 0.76, blue: 0.75)
-        case "R": Color(red: 0.98, green: 0.67, blue: 0.56)
-        case "G": Color(red: 0.61, green: 0.83, blue: 0.68)
-        default: Color(red: 0.80, green: 0.76, blue: 0.75)
-        }
-    }
-}
-
 /// The picked card, big: its picture (both faces), cost, type, price and a link to Scryfall.
 struct CardInspector: View {
     let row: CardRow?
@@ -265,7 +233,7 @@ struct CardInspector: View {
                     Text(row.name)
                         .font(.headline)
                     if let facts = row.facts {
-                        ManaCostView(cost: facts.manaCost)
+                        ManaText(facts.manaCost, style: .title3)
                         Text(facts.typeLine)
                             .foregroundStyle(.secondary)
                         if let price = facts.price(currency) {
