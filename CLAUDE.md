@@ -24,7 +24,7 @@ scripts/make_dmg.sh path/Conclave.app               # Conclave.dmg
   engine. Conclave's own CI checks the macOS build (`macos-engine.yml`). Don't port engine rules to Swift unless
   there is a reason; one copy of the rules.
 - The engine sits in `Contents/Helpers/conclave-backend/` (`scripts/embed_engine.sh`, a post-build step that also
-  signs it inside out with `App/Engine.entitlements`); Apple keeps `Contents/Resources` for data. No App Sandbox
+  signs it inside out with `App/Engine.entitlements`); only code stays there: folders and files without code move to `Contents/Resources/conclave-backend/` behind relative symlinks, and folders with code and a dot in their name get `__dot__` (codesign takes a dotted folder for a bundle), like PyInstaller's own .app layout. No App Sandbox
   (Developer ID later, not the App Store); hardened runtime on.
 - `Packages/ConclaveEngine/` (no UI, tests on Linux): `EngineAddress` (the `MTGDECK_URL=` line), `EngineFolders`
   (`~/Library/Application Support/MTG Deckbuilder` and `~/Library/Caches/MTG Deckbuilder`, like Conclave's
