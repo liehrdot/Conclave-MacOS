@@ -25,6 +25,29 @@ final class EngineModel {
     /// One URL session for every call, not one per call.
     @ObservationIgnored private let transport = URLSessionTransport()
     @ObservationIgnored private var watching: Task<Void, Never>?
+    /// The decks being edited, by slug; an editor stays while its deck has unsaved edits.
+    private(set) var editors: [String: DeckEditor] = [:]
+
+    /// The editor for a loaded deck: the existing one gets the newer deck, else a new one starts.
+    func editor(for deck: Deck) -> DeckEditor {
+        if let editor = editors[deck.slug] {
+            editor.update(deck)
+            return editor
+        }
+        let editor = DeckEditor(deck)
+        editors[deck.slug] = editor
+        return editor
+    }
+
+    /// Decks with edits that aren't saved yet (asked about before quitting).
+    var unsavedDecks: [DeckEditor] { editors.values.filter(\.hasChanges) }
+
+    /// Saves a deck's edits as one new version, then reloads the deck list (its version and date change).
+    func save(_ editor: DeckEditor) async {
+        guard let client else { return }
+        await editor.save(with: client)
+        if editor.saveError == nil { await reload() }
+    }
 
     var client: EngineClient? {
         if case .ready(let address) = state { EngineClient(address: address, transport: transport) } else { nil }

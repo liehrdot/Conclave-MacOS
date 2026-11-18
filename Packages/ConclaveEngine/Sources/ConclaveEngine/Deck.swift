@@ -7,16 +7,16 @@ public struct Deck: Decodable, Sendable, Equatable, Identifiable {
     public let slug: String
     public let name: String
     public let commanders: [String]
-    public let cards: [DeckCard]
+    public internal(set) var cards: [DeckCard]
     /// The "Vielleicht" list: never counted, checked or priced (`maybe.py`).
-    public let maybe: [MaybeCard]
+    public internal(set) var maybe: [MaybeCard]
     public let bracket: Int?
     public let version: Int?
     public let proxy: Bool
     /// "eur" or "usd": which price the deck counts in.
     public let currency: String
     /// What Scryfall knows about each card, by name (only the keys the web GUI asks for).
-    public let cardData: [String: CardFacts]
+    public internal(set) var cardData: [String: CardFacts]
     /// Set when the engine couldn't look the cards up (offline): the list still shows, without pictures or prices.
     public let cardDataError: String?
 
@@ -79,6 +79,11 @@ public struct DeckCard: Decodable, Sendable, Equatable {
 public struct MaybeCard: Decodable, Sendable, Equatable {
     public let name: String
     public let category: String?
+
+    public init(name: String, category: String? = nil) {
+        self.name = name
+        self.category = category
+    }
 }
 
 /// The card facts the engine adds to a deck (`card_data`, from `scryfall.compact()`).
