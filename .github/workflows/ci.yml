@@ -63,6 +63,9 @@ jobs:
         run: |
           app=build/derived/Build/Products/Release/Conclave.app
           codesign --verify --deep --strict --verbose=2 "$app"
+          # the icon made it in: Info.plist names it and the compiled asset catalog holds it
+          test "$(/usr/libexec/PlistBuddy -c "Print :CFBundleIconName" "$app/Contents/Info.plist")" = AppIcon
+          xcrun assetutil --info "$app/Contents/Resources/Assets.car" | grep -q '"Name" : "AppIcon"'
           # the engine inside the signed app, with the hardened runtime, must still start and answer
           engine="$app/Contents/Helpers/conclave-backend/conclave-backend"
           "$engine" --data "$RUNNER_TEMP/data" --cache "$RUNNER_TEMP/cache" --port 0 --token auto > out.txt 2> err.txt &

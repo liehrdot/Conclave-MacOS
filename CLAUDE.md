@@ -36,7 +36,7 @@ scripts/make_dmg.sh path/Conclave.app               # Conclave.dmg
 - `App/`: `ConclaveApp` (WindowGroup + Settings, the delegate starts the engine and stops it before quitting),
   `EngineModel` (`@Observable`, the one engine; `MTGDECK_BACKEND` points at another engine while developing),
   `RootView` (starting / failed / `DeckBrowser`), `DeckBrowser` (NavigationSplitView: sidebar sections, detail),
-  `SettingsView`.
+  `SettingsView`. `App/AppIcon.icon` = the iPhone app's Icon Composer icon (copy changes from Conclave-iOS).
 - CI (`.github/workflows/ci.yml`): package tests on Linux; on `macos-26` with Xcode 26.6 the engine (cached per
   `conclave.rev`), the app signed ad hoc, `codesign --verify`, the bundled engine started from inside the app, and
   `Conclave.dmg` as the artifact `conclave-mac`.
