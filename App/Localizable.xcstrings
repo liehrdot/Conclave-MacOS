@@ -771,6 +771,16 @@
         }
       }
     },
+    "The first time, Conclave looks up every card on Scryfall. That can take a few seconds.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim ersten Mal schlägt Conclave jede Karte auf Scryfall nach. Das kann ein paar Sekunden dauern."
+          }
+        }
+      }
+    },
     "The part of Conclave that checks decks and keeps your data stopped several times in a row.": {
       "localizations": {
         "de": {

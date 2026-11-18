@@ -57,8 +57,15 @@ struct DeckView: View {
                 Button("Try Again") { Task { await load() } }
             }
         } else {
-            ProgressView("Loading Deck…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            VStack(spacing: 8) {
+                ProgressView("Loading Deck…")
+                Text("The first time, Conclave looks up every card on Scryfall. That can take a few seconds.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 
@@ -72,12 +79,16 @@ struct DeckView: View {
         if deck?.slug != summary.slug {
             deck = nil
             selection = nil
+            loadError = nil  // an error belongs to the deck it came from
         }
         do {
-            deck = try await client.deck(summary.slug)
+            let loaded = try await client.deck(summary.slug)
+            guard !Task.isCancelled else { return }
+            deck = loaded
             loadError = nil
-        } catch is CancellationError {
         } catch {
+            // picking another deck cancels this load: URLSession then throws URLError.cancelled, which is no error
+            guard !Task.isCancelled, !isCancellation(error) else { return }
             loadError = error
         }
     }

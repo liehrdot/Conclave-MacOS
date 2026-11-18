@@ -46,7 +46,12 @@ public struct DeckSummary: Decodable, Sendable, Equatable, Identifiable {
         updated = (try? c.decodeIfPresent(String.self, forKey: .updated)).flatMap(Self.date)
         version = try? c.decodeIfPresent(Int.self, forKey: .version)
         valid = try? c.decodeIfPresent(Bool.self, forKey: .valid)
-        colorIdentity = (try? c.decodeIfPresent([String].self, forKey: .colorIdentity)) ?? []
+        // `list_decks()` writes the identity as one string ("WBR"); a list works too
+        if let list = try? c.decodeIfPresent([String].self, forKey: .colorIdentity) {
+            colorIdentity = list
+        } else {
+            colorIdentity = ((try? c.decodeIfPresent(String.self, forKey: .colorIdentity)) ?? "").map(String.init)
+        }
         fits = (try? c.decodeIfPresent(Bool.self, forKey: .fits)) ?? false
         needsRevalidation = (try? c.decodeIfPresent(Bool.self, forKey: .needsRevalidation)) ?? false
         pinned = (try? c.decodeIfPresent(Bool.self, forKey: .pinned)) ?? false

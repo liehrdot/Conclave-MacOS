@@ -35,7 +35,7 @@ let decksJSON = """
    "level": "Bracket 3", "proxy": false, "updated": "2026-11-17T20:15:04", "version": 12, "valid": true,
    "color_identity": ["B", "G"], "fits": true, "table_rule": null, "needs_revalidation": false,
    "pinned": true, "shelved": false, "planning": false, "built": true, "pin_rank": 0},
-  {"slug": "krenko", "name": "Krenko", "commanders": ["Krenko, Mob Boss"], "updated": "2026-11-01T10:00:00.123456+00:00",
+  {"slug": "krenko", "name": "Krenko", "commanders": ["Krenko, Mob Boss"], "color_identity": "R", "updated": "2026-11-01T10:00:00.123456+00:00",
    "valid": false, "pinned": false, "shelved": false},
   {"slug": "old", "name": "Old Deck", "shelved": true},
   {"slug": "broken", "name": "broken (beschädigt)", "commanders": [], "damaged": true, "level": "", "updated": null,
@@ -54,6 +54,7 @@ let decksJSON = """
         #expect(meren.commanders == ["Meren of Clan Nel Toth"])
         #expect(meren.bracket == 3 && meren.valid == true && meren.fits && meren.pinned && meren.built)
         #expect(meren.colorIdentity == ["B", "G"])
+        #expect(decks[1].colorIdentity == ["R"])  // the engine sends a string
         #expect(meren.updated != nil)
         #expect(decks[1].updated != nil)  // with fractions and a zone
         #expect(decks[1].bracket == nil && decks[1].level == "")
@@ -96,5 +97,14 @@ let decksJSON = """
     @Test func acceptLanguageFallsBackToEnglish() {
         #expect(EngineClient.acceptLanguage([]) == "en")
         #expect(EngineClient.acceptLanguage(["en-GB"]) == "en-GB")
+    }
+}
+
+@Suite struct CancellationTests {
+    @Test func tellsACancelledLoadFromAnError() {
+        #expect(isCancellation(CancellationError()))
+        #expect(isCancellation(URLError(.cancelled)))
+        #expect(!isCancellation(URLError(.timedOut)))
+        #expect(!isCancellation(EngineError.notFound))
     }
 }
