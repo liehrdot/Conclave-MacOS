@@ -1,6 +1,22 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@ or %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ oder %2$@"
+          }
+        }
+      }
+    },
+    "%@%@": {
+      "shouldTranslate": false
+    },
+    "%@%@%@": {
+      "shouldTranslate": false
+    },
     "%lld cards": {
       "localizations": {
         "en": {
@@ -67,6 +83,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Schlachten"
+          }
+        }
+      }
+    },
+    "black": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "schwarz"
+          }
+        }
+      }
+    },
+    "blue": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "blau"
           }
         }
       }
@@ -167,6 +203,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wähle links in der Seitenleiste ein Deck."
+          }
+        }
+      }
+    },
+    "colorless": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "farblos"
           }
         }
       }
@@ -371,6 +417,16 @@
         }
       }
     },
+    "energy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie"
+          }
+        }
+      }
+    },
     "Engine": {
       "localizations": {
         "de": {
@@ -387,6 +443,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Game Changer"
+          }
+        }
+      }
+    },
+    "green": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "grün"
           }
         }
       }
@@ -551,6 +617,16 @@
         }
       }
     },
+    "Phyrexian %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (phyrexianisch)"
+          }
+        }
+      }
+    },
     "Pick a Deck": {
       "localizations": {
         "de": {
@@ -627,6 +703,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ramp"
+          }
+        }
+      }
+    },
+    "red": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rot"
           }
         }
       }
@@ -741,6 +827,16 @@
         }
       }
     },
+    "snow": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnee"
+          }
+        }
+      }
+    },
     "Sorceries": {
       "localizations": {
         "de": {
@@ -817,6 +913,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Synergie"
+          }
+        }
+      }
+    },
+    "tap": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tappen"
           }
         }
       }
@@ -941,6 +1047,16 @@
         }
       }
     },
+    "untap": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "enttappen"
+          }
+        }
+      }
+    },
     "Update Now": {
       "localizations": {
         "de": {
@@ -977,6 +1093,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Version"
+          }
+        }
+      }
+    },
+    "white": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weiß"
           }
         }
       }

@@ -87,20 +87,41 @@ let deckJSON = """
     }
 }
 
-@Suite struct ManaCostTests {
-    @Test func splitsACost() {
-        #expect(ManaCost.symbols("{2}{B}{G}") == ["2", "B", "G"])
-        #expect(ManaCost.symbols("{X}{w/u}{G/P}") == ["X", "W/U", "G/P"])
-        #expect(ManaCost.symbols("{1}{G} // {3}") == ["1", "G", "3"])
-        #expect(ManaCost.symbols("") == [])
-        #expect(ManaCost.symbols("{}{") == [])
+@Suite struct ManaTests {
+    @Test func symbolsAndText() {
+        #expect(Mana.pieces("{T}: Add {G}.") == [.symbol(.init("T")), .text(": Add "), .symbol(.init("G")), .text(".")])
+        #expect(Mana.pieces("no symbols") == [.text("no symbols")])
+        #expect(Mana.pieces("{ broken") == [.text("{ broken")])
+        #expect(Mana.pieces("{}{2}") == [.text("{}"), .symbol(.init("2"))])
+        #expect(Mana.pieces("{1}{G} // {3}") == [.symbol(.init("1")), .symbol(.init("G")), .text(" // "), .symbol(.init("3"))])
+        #expect(Mana.pieces("") == [])
     }
 
-    @Test func picksTheColour() {
-        #expect(ManaCost.color(of: "B") == "B")
-        #expect(ManaCost.color(of: "2/W") == "W")
-        #expect(ManaCost.color(of: "G/P") == "G")
-        #expect(ManaCost.color(of: "12") == nil)
-        #expect(ManaCost.color(of: "C") == nil)
+    @Test func kinds() {
+        #expect(Mana.Symbol("B").kind == .color("B"))
+        #expect(Mana.Symbol("C").kind == .color("C"))
+        #expect(Mana.Symbol("10").kind == .generic("10"))
+        #expect(Mana.Symbol("X").kind == .generic("X"))
+        #expect(Mana.Symbol("B/R").kind == .hybrid("B", "R"))
+        #expect(Mana.Symbol("2/W").kind == .hybrid("2", "W"))
+        #expect(Mana.Symbol("G/P").kind == .phyrexian("G"))
+        #expect(Mana.Symbol("G/U/P").kind == .phyrexian("G"))
+        #expect(Mana.Symbol("T").kind == .glyph("T"))
+        #expect(Mana.Symbol("w").kind == .color("W"))
+    }
+
+    @Test func voiceOverReadsTheNames() {
+        #expect(Mana.spoken("{2}{B}{G}") == "2, black, green")
+        #expect(Mana.spoken("{T}: Add {C}{C}.") == "tap: Add colorlesscolorless.")
+        #expect(Mana.Symbol("2/W").spoken() == "2 or white")
+        #expect(Mana.Symbol("R/P").spoken() == "Phyrexian red")
+    }
+
+    @Test func voiceOverSpeaksTheAppsLanguage() {
+        let german = Mana.Words(names: ["B": "schwarz", "G": "grün", "W": "weiß", "R": "rot"],
+                                either: { "\($0) oder \($1)" }, phyrexian: { "phyrexianisch \($0)" })
+        #expect(Mana.spoken("{2}{B}{G}", german) == "2, schwarz, grün")
+        #expect(Mana.Symbol("2/W").spoken(german) == "2 oder weiß")
+        #expect(Mana.Symbol("R/P").spoken(german) == "phyrexianisch rot")
     }
 }
