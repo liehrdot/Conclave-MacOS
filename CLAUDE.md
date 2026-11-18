@@ -32,11 +32,11 @@ scripts/make_dmg.sh path/Conclave.app               # Conclave.dmg
   `backend.1.log`), wait for the address, `stop()` = SIGTERM then SIGKILL), `RestartPolicy` + `EngineSupervisor`
   (back-off 1/2/5/5/5 s, a run of 5 min resets it, then `failed` with the log tail; the twin of the Windows shell's
   `backend.rs`), `EngineClient` (the engine's JSON API with the Bearer token and `Accept-Language`; errors as
-  `EngineError`), `DeckSummary`/`DeckGroups` (`GET /api/decks`: pinned, the rest, paused). `Deck` (`GET /api/decks/{slug}`: cards, maybe list, `CardFacts` from `card_data`, `cardCount`, `price` like `price_total`), `Deck.sections(by:)` (`DeckGrouping` category/type/mana value, `SectionKey`, `CardRow`; the web GUI's `groupOf()`/`groupRank()`), `ManaCost` (the symbols of a cost).
+  `EngineError`), `DeckSummary`/`DeckGroups` (`GET /api/decks`: pinned, the rest, paused). `Deck` (`GET /api/decks/{slug}`: cards, maybe list, `CardFacts` from `card_data`, `cardCount`, `price` like `price_total`), `Deck.sections(by:)` (`DeckGrouping` category/type/mana value, `SectionKey`, `CardRow`; the web GUI's `groupOf()`/`groupRank()`), `ManaCost` (the symbols of a cost). `CardDatabase`/`CardDatabaseRun` (`GET /api/carddb`, `GET|POST /api/carddb/refresh`: state, `advice`, start a download).
 - `App/`: `ConclaveApp` (WindowGroup + Settings, the delegate starts the engine and stops it before quitting),
   `EngineModel` (`@Observable`, the one engine; `MTGDECK_BACKEND` points at another engine while developing),
   `RootView` (starting / failed / `DeckBrowser`), `DeckBrowser` (NavigationSplitView: sidebar sections, detail), `DeckView` (head, `CardTable` = a `Table` with a section per group, "Group By" in the toolbar (`AppStorage` `deckGrouping`), `CardInspector` in `.inspector` with both faces),
-  `SettingsView`. `App/AppIcon.icon` = the iPhone app's Icon Composer icon (copy changes from Conclave-iOS).
+  `SettingsView` (data folder, card database via `CardDatabaseStatus`, also shown while a deck loads without one; `EngineModel` polls a running download every 5 s). `App/AppIcon.icon` = the iPhone app's Icon Composer icon (copy changes from Conclave-iOS).
 - CI (`.github/workflows/ci.yml`): package tests on Linux; on `macos-26` with Xcode 26.6 the engine (cached per
   `conclave.rev`), the app signed ad hoc, `codesign --verify`, the bundled engine started from inside the app, and
   `Conclave.dmg` as the artifact `conclave-mac`.

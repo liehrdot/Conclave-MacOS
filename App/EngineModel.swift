@@ -15,11 +15,16 @@ final class EngineModel {
     private(set) var version = ""
     /// No engine inside the app (built without `scripts/build_engine.sh`).
     private(set) var engineMissing = false
+    /// The engine's local card database; nil until the engine answered.
+    private(set) var cardDatabase: CardDatabase?
+    /// Its download, if one runs (the engine reports no progress, only running or not).
+    private(set) var cardDatabaseRun = CardDatabaseRun(running: false)
 
     let folders = EngineFolders.standard()
     @ObservationIgnored private var supervisor: EngineSupervisor?
     /// One URL session for every call, not one per call.
     @ObservationIgnored private let transport = URLSessionTransport()
+    @ObservationIgnored private var watching: Task<Void, Never>?
 
     var client: EngineClient? {
         if case .ready(let address) = state { EngineClient(address: address, transport: transport) } else { nil }
@@ -59,6 +64,7 @@ final class EngineModel {
         state = new
         if case .ready = new {
             Task { await reload() }
+            Task { await loadCardDatabase() }
         }
     }
 
@@ -72,6 +78,47 @@ final class EngineModel {
             if version.isEmpty { version = (try? await client.health().version) ?? "" }
         } catch {
             loadError = error
+        }
+    }
+
+    func loadCardDatabase() async {
+        guard let client else { return }
+        if let database = try? await client.cardDatabase() { cardDatabase = database }
+        if let run = try? await client.cardDatabaseRun() {
+            cardDatabaseRun = run
+            if run.running { watchCardDatabase() }
+        }
+    }
+
+    /// "Download Card Database" / "Update Now": the engine downloads Scryfall's cards and imports them.
+    func downloadCardDatabase() {
+        guard let client else { return }
+        Task {
+            do {
+                try await client.refreshCardDatabase()
+                cardDatabaseRun = CardDatabaseRun(running: true)
+                watchCardDatabase()
+            } catch {
+                cardDatabaseRun = CardDatabaseRun(running: false, error: message(for: error))
+            }
+        }
+    }
+
+    /// Asks every 5 seconds until the download is over (like the web app's settings), then reads the new state.
+    private func watchCardDatabase() {
+        guard watching == nil else { return }
+        watching = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(5))
+                guard let self, let client = self.client else { break }
+                guard let run = try? await client.cardDatabaseRun() else { continue }
+                self.cardDatabaseRun = run
+                if !run.running {
+                    if let database = try? await client.cardDatabase() { self.cardDatabase = database }
+                    break
+                }
+            }
+            self?.watching = nil
         }
     }
 

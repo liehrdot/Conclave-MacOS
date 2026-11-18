@@ -41,6 +41,16 @@
         }
       }
     },
+    "An update is recommended.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Update wird empfohlen."
+          }
+        }
+      }
+    },
     "Artifacts": {
       "localizations": {
         "de": {
@@ -81,6 +91,16 @@
         }
       }
     },
+    "Card Database": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kartendatenbank"
+          }
+        }
+      }
+    },
     "Card Details": {
       "localizations": {
         "de": {
@@ -107,6 +127,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kartenbilder und Preise fehlen gerade. Conclave hat Scryfall nicht erreicht."
+          }
+        }
+      }
+    },
+    "Cards": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karten"
           }
         }
       }
@@ -301,6 +331,36 @@
         }
       }
     },
+    "Download Card Database": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kartendatenbank laden"
+          }
+        }
+      }
+    },
+    "Download the card database once, and decks open in a moment.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lade einmal die Kartendatenbank, dann öffnen sich Decks sofort."
+          }
+        }
+      }
+    },
+    "Downloading and importing Scryfall's cards (about 375 MB). This takes a few minutes.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scryfalls Karten werden geladen und importiert (etwa 375 MB). Das dauert ein paar Minuten."
+          }
+        }
+      }
+    },
     "Enchantments": {
       "localizations": {
         "de": {
@@ -447,6 +507,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Noch keine Decks"
+          }
+        }
+      }
+    },
+    "Not downloaded yet. Without it, Conclave looks up every card on Scryfall, which is slower and finds only English names.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht geladen. Ohne sie schlägt Conclave jede Karte auf Scryfall nach. Das ist langsamer und findet nur englische Namen."
           }
         }
       }
@@ -751,12 +821,32 @@
         }
       }
     },
+    "The card database is downloading. Decks open faster once it's done.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kartendatenbank wird geladen. Danach öffnen sich Decks schneller."
+          }
+        }
+      }
+    },
     "The deck file is damaged.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Die Deck-Datei ist beschädigt."
+          }
+        }
+      }
+    },
+    "The download didn't work: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Laden hat nicht geklappt: %@"
           }
         }
       }
@@ -847,6 +937,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Typ"
+          }
+        }
+      }
+    },
+    "Update Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt aktualisieren"
+          }
+        }
+      }
+    },
+    "Updated": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stand"
           }
         }
       }

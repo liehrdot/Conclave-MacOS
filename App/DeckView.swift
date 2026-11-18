@@ -63,6 +63,16 @@ struct DeckView: View {
                     .font(.callout)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
+                if engine.cardDatabaseRun.running {
+                    Text("The card database is downloading. Decks open faster once it's done.")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                } else if engine.cardDatabase?.available == false {
+                    Text("Download the card database once, and decks open in a moment.")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                    Button("Download Card Database") { engine.downloadCardDatabase() }
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
