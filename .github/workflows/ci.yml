@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Pinned on purpose, like Conclave-iOS: moving to a newer Xcode changes the app's look and is a decision made here.
+env:
+  XCODE: "26.6"
+
+permissions:
+  contents: read
+
+# a new push to a pull request stops its older run; pushes to main and runs by hand are never cancelled
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # ConclaveEngine has no UI, so its tests run on Linux: fast, on every push
+  tests:
+    runs-on: ubuntu-latest
+    container: swift:6.2-noble
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: swift test --package-path Packages/ConclaveEngine
+
+  # the app with its engine inside, checked, and packed as Conclave.dmg (the run's "conclave-mac" artifact)
+  mac:
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Use Xcode ${{ env.XCODE }}
+        run: |
+          sudo xcode-select -s "/Applications/Xcode_${XCODE}.app"
+          xcodebuild -version
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          python-version: "3.12"
+      # the engine only changes with conclave.rev, so it is built once per pinned Conclave commit
+      - uses: actions/cache@v4
+        id: engine
+        with:
+          path: build/engine
+          key: engine-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('conclave.rev', 'scripts/build_engine.sh') }}
+      - name: Build the engine
+        if: steps.engine.outputs.cache-hit != 'true'
+        run: scripts/build_engine.sh
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      # signed ad hoc ("-"): no Developer account yet. macOS asks once before the first start (see README).
+      - name: Build
+        run: >
+          xcodebuild build
+          -project Conclave.xcodeproj -scheme Conclave -configuration Release
+          -destination "generic/platform=macOS" -derivedDataPath build/derived
+          CODE_SIGN_IDENTITY="-" CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=""
+      - name: Check the app
+        run: |
+          app=build/derived/Build/Products/Release/Conclave.app
+          codesign --verify --deep --strict --verbose=2 "$app"
+          # the engine inside the signed app, with the hardened runtime, must still start and answer
+          engine="$app/Contents/Helpers/conclave-backend/conclave-backend"
+          "$engine" --data "$RUNNER_TEMP/data" --cache "$RUNNER_TEMP/cache" --port 0 --token auto > out.txt 2> err.txt &
+          pid=$!
+          url=""
+          for i in $(seq 1 120); do
+            sleep 0.5
+            url=$(sed -n 's/^MTGDECK_URL=//p' out.txt | head -1)
+            [ -n "$url" ] && break
+          done
+          cat out.txt err.txt
+          [ -n "$url" ] || { echo "the bundled engine printed no MTGDECK_URL"; exit 1; }
+          base="${url%%\?*}"
+          token="${url#*token=}"
+          curl -fsS "${base}api/health"
+          curl -fsS -o /dev/null -H "Authorization: Bearer $token" "${base}api/decks"
+          kill "$pid"
+          du -sh "$app"
+      - name: Pack Conclave.dmg
+        run: scripts/make_dmg.sh build/derived/Build/Products/Release/Conclave.app Conclave.dmg
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: conclave-mac
+          path: Conclave.dmg
+          retention-days: 14

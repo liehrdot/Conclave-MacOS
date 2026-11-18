@@ -1,0 +1,51 @@
+# XcodeGen turns this file into Conclave.xcodeproj (`xcodegen generate`). The project file itself is not in git:
+# it is long, generated and hard to review; this file says the same in a few lines.
+name: Conclave
+options:
+  bundleIdPrefix: app.conclave
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  ConclaveEngine:
+    path: Packages/ConclaveEngine
+targets:
+  Conclave:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes: [Info.plist]
+    dependencies:
+      - package: ConclaveEngine
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Conclave
+        LSApplicationCategoryType: public.app-category.entertainment
+        # the app's texts follow the Mac's language; English is the fallback
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, de]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.conclave.mac
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        # No App Sandbox: the app ships outside the App Store (Developer ID later) and its engine works in
+        # ~/Library/Application Support/MTG Deckbuilder like on Windows. Hardened runtime stays on for notarization.
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        # the copy step below reads build/engine, outside the sources Xcode lets scripts see
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        SWIFT_EMIT_LOC_STRINGS: YES
+        LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    postBuildScripts:
+      # The engine goes into Contents/Helpers: Apple keeps Contents/Resources for data, and code there
+      # breaks signing. scripts/build_engine.sh puts it in build/engine first.
+      - name: Embed the engine
+        basedOnDependencyAnalysis: false
+        script: scripts/embed_engine.sh
