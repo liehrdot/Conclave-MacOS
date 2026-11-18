@@ -64,6 +64,11 @@ public struct EngineClient: Sendable {
         try await get("api/decks")
     }
 
+    /// One deck with its cards and their Scryfall facts. Slow the first time: the engine looks every card up.
+    public func deck(_ slug: String) async throws -> Deck {
+        try await get("api/decks/\(slug)")
+    }
+
     func get<T: Decodable>(_ path: String, query: [URLQueryItem] = []) async throws -> T {
         try await send(request("GET", path, query: query))
     }
