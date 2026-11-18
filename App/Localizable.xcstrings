@@ -1,12 +1,122 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%lld cards": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld card"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld cards"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Karte"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Karten"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Artifacts": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Artefakte"
+          }
+        }
+      }
+    },
+    "Battles": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlachten"
+          }
+        }
+      }
+    },
+    "Board Wipes": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Board Wipes"
+          }
+        }
+      }
+    },
     "Bracket": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Bracket"
+          }
+        }
+      }
+    },
+    "Card Details": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kartendetails"
+          }
+        }
+      }
+    },
+    "Card Draw": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kartenzug"
+          }
+        }
+      }
+    },
+    "Card pictures and prices are missing right now. Conclave couldn't reach Scryfall.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kartenbilder und Preise fehlen gerade. Conclave hat Scryfall nicht erreicht."
+          }
+        }
+      }
+    },
+    "Category": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kategorie"
           }
         }
       }
@@ -31,6 +141,16 @@
         }
       }
     },
+    "Commander": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commander"
+          }
+        }
+      }
+    },
     "Conclave": {
       "localizations": {
         "de": {
@@ -41,22 +161,22 @@
         }
       }
     },
-    "Conclave Couldn't Start": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conclave konnte nicht starten"
-          }
-        }
-      }
-    },
     "Conclave couldn't do that (error %lld).": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Das hat nicht geklappt (Fehler %lld)."
+          }
+        }
+      }
+    },
+    "Conclave Couldn't Start": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conclave konnte nicht starten"
           }
         }
       }
@@ -77,6 +197,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Conclave hat eine Antwort geschickt, die diese App nicht versteht."
+          }
+        }
+      }
+    },
+    "Cost": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kosten"
+          }
+        }
+      }
+    },
+    "Counterspells": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counterspells"
+          }
+        }
+      }
+    },
+    "Creatures": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kreaturen"
           }
         }
       }
@@ -111,6 +261,16 @@
         }
       }
     },
+    "Deck Didn't Load": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deck wurde nicht geladen"
+          }
+        }
+      }
+    },
     "Decks": {
       "localizations": {
         "de": {
@@ -141,12 +301,142 @@
         }
       }
     },
+    "Enchantments": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verzauberungen"
+          }
+        }
+      }
+    },
     "Engine": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Hintergrunddienst"
+          }
+        }
+      }
+    },
+    "Game Changer": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Game Changer"
+          }
+        }
+      }
+    },
+    "Group By": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppieren nach"
+          }
+        }
+      }
+    },
+    "Group the cards by category, type or mana value": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karten nach Kategorie, Typ oder Manawert gruppieren"
+          }
+        }
+      }
+    },
+    "Instants": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spontanzauber"
+          }
+        }
+      }
+    },
+    "Lands": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Länder"
+          }
+        }
+      }
+    },
+    "Loading Deck…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deck wird geladen …"
+          }
+        }
+      }
+    },
+    "Mana Value": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manawert"
+          }
+        }
+      }
+    },
+    "Mana Value %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manawert %lld"
+          }
+        }
+      }
+    },
+    "Mana Value 7+": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manawert 7+"
+          }
+        }
+      }
+    },
+    "Maybe List": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vielleicht"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "No Card Selected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Karte ausgewählt"
           }
         }
       }
@@ -167,6 +457,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nicht legal"
+          }
+        }
+      }
+    },
+    "Other": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
           }
         }
       }
@@ -201,6 +501,66 @@
         }
       }
     },
+    "Planeswalkers": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planeswalker"
+          }
+        }
+      }
+    },
+    "Price": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preis"
+          }
+        }
+      }
+    },
+    "Protection": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schutz"
+          }
+        }
+      }
+    },
+    "Proxy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proxy"
+          }
+        }
+      }
+    },
+    "Qty": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anz."
+          }
+        }
+      }
+    },
+    "Ramp": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ramp"
+          }
+        }
+      }
+    },
     "Reload Decks": {
       "localizations": {
         "de": {
@@ -217,6 +577,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Decks neu laden (⌘R)"
+          }
+        }
+      }
+    },
+    "Removal": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removal"
           }
         }
       }
@@ -241,12 +611,22 @@
         }
       }
     },
-    "Show Log": {
+    "Select a card in the list to see it here.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protokoll zeigen"
+            "value": "Wähle eine Karte in der Liste, um sie hier zu sehen."
+          }
+        }
+      }
+    },
+    "Show Front": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorderseite zeigen"
           }
         }
       }
@@ -257,6 +637,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Im Finder zeigen"
+          }
+        }
+      }
+    },
+    "Show Log": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protokoll zeigen"
+          }
+        }
+      }
+    },
+    "Show on Scryfall": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf Scryfall ansehen"
+          }
+        }
+      }
+    },
+    "Show or hide the picked card": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die gewählte Karte ein- oder ausblenden"
+          }
+        }
+      }
+    },
+    "Sorceries": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hexereien"
           }
         }
       }
@@ -321,12 +741,12 @@
         }
       }
     },
-    "The Engine Is Missing": {
+    "Synergy": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Hintergrunddienst fehlt"
+            "value": "Synergie"
           }
         }
       }
@@ -337,6 +757,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die Deck-Datei ist beschädigt."
+          }
+        }
+      }
+    },
+    "The Engine Is Missing": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Hintergrunddienst fehlt"
+          }
+        }
+      }
+    },
+    "The first time, Conclave looks up every card on Scryfall. That can take a few seconds.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim ersten Mal schlägt Conclave jede Karte auf Scryfall nach. Das kann ein paar Sekunden dauern."
           }
         }
       }
@@ -381,12 +821,62 @@
         }
       }
     },
+    "Turn Over": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Umdrehen"
+          }
+        }
+      }
+    },
+    "Tutors": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutoren"
+          }
+        }
+      }
+    },
+    "Type": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typ"
+          }
+        }
+      }
+    },
+    "Utility": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        }
+      }
+    },
     "Version": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Version"
+          }
+        }
+      }
+    },
+    "Win Conditions": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siegbedingungen"
           }
         }
       }

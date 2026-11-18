@@ -41,6 +41,14 @@ public enum EngineError: Error, Equatable, Sendable {
     case badAnswer
 }
 
+/// A load that was called off (a newer one replaced it): Swift's `CancellationError`, or `URLError.cancelled`,
+/// which `URLSession` throws when the task around a request is cancelled. Screens show neither as an error.
+public func isCancellation(_ error: Error) -> Bool {
+    if error is CancellationError { return true }
+    if let error = error as? URLError { return error.code == .cancelled }
+    return false
+}
+
 /// Calls the engine's JSON API (the routes Conclave's web GUI uses, `gui/app.py`).
 public struct EngineClient: Sendable {
     public let address: EngineAddress
@@ -62,6 +70,11 @@ public struct EngineClient: Sendable {
     /// Every deck, in the engine's order: pinned first, paused last (`storage.list_decks()`).
     public func decks() async throws -> [DeckSummary] {
         try await get("api/decks")
+    }
+
+    /// One deck with its cards and their Scryfall facts. Slow the first time: the engine looks every card up.
+    public func deck(_ slug: String) async throws -> Deck {
+        try await get("api/decks/\(slug)")
     }
 
     func get<T: Decodable>(_ path: String, query: [URLQueryItem] = []) async throws -> T {

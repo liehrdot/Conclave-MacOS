@@ -12,7 +12,7 @@ struct DeckBrowser: View {
                 .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 360)
         } detail: {
             if let deck = engine.decks.first(where: { $0.slug == selection }) {
-                DeckOverview(deck: deck)
+                DeckView(summary: deck)
             } else {
                 ContentUnavailableView("Pick a Deck", systemImage: "rectangle.stack",
                                        description: Text("Choose a deck in the sidebar."))
@@ -94,45 +94,5 @@ struct DeckRow: View {
             }
         }
         .padding(.vertical, 2)
-    }
-}
-
-/// The selected deck, for now its head only: the card list and the deck check come in the next steps.
-struct DeckOverview: View {
-    let deck: DeckSummary
-
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-                Text(deck.name)
-                    .font(.largeTitle.bold())
-                if !deck.commanders.isEmpty {
-                    Text(deck.commanders.joined(separator: " & "))
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                }
-                HStack(spacing: 16) {
-                    if let bracket = deck.bracket {
-                        LabeledContent("Bracket", value: "\(bracket)")
-                    }
-                    if let version = deck.version {
-                        LabeledContent("Version", value: "\(version)")
-                    }
-                    if let updated = deck.updated {
-                        LabeledContent("Saved") {
-                            Text(updated, format: .relative(presentation: .named))
-                        }
-                    }
-                }
-                .font(.callout)
-                if deck.needsRevalidation {
-                    Label("Changed on another device. The deck check runs again soon.", systemImage: "arrow.triangle.2.circlepath")
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(24)
-        }
-        .navigationTitle(deck.name)
     }
 }
