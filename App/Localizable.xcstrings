@@ -57,6 +57,76 @@
         }
       }
     },
+    "%lld unsaved changes": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld unsaved change"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld unsaved changes"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ungesicherte Änderung"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ungesicherte Änderungen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Add a Card": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karte hinzufügen"
+          }
+        }
+      }
+    },
+    "Add a Copy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Exemplar mehr"
+          }
+        }
+      }
+    },
+    "Add Card": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karte hinzufügen"
+          }
+        }
+      }
+    },
     "An update is recommended.": {
       "localizations": {
         "de": {
@@ -127,6 +197,16 @@
         }
       }
     },
+    "Cancel": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbrechen"
+          }
+        }
+      }
+    },
     "Card Database": {
       "localizations": {
         "de": {
@@ -153,6 +233,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kartenzug"
+          }
+        }
+      }
+    },
+    "Card Not Added": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karte nicht hinzugefügt"
           }
         }
       }
@@ -187,12 +277,72 @@
         }
       }
     },
+    "Change Category": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kategorie ändern"
+          }
+        }
+      }
+    },
+    "Change Copies": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anzahl ändern"
+          }
+        }
+      }
+    },
     "Changed on another device. The deck check runs again soon.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Auf einem anderen Gerät geändert. Der Deck-Check läuft gleich erneut."
+          }
+        }
+      }
+    },
+    "Changes to %lld decks aren't saved yet. They're lost when Conclave quits.": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Changes to %lld deck aren't saved yet. They're lost when Conclave quits."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Changes to %lld decks aren't saved yet. They're lost when Conclave quits."
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Änderungen an %lld Deck sind noch nicht gesichert. Sie gehen verloren, wenn Conclave beendet wird."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Änderungen an %lld Decks sind noch nicht gesichert. Sie gehen verloren, wenn Conclave beendet wird."
+                }
+              }
+            }
           }
         }
       }
@@ -253,6 +403,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Conclave konnte nicht starten"
+          }
+        }
+      }
+    },
+    "Conclave doesn't know a card called “%@”.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conclave kennt keine Karte namens „%@“."
           }
         }
       }
@@ -343,6 +503,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deck wurde nicht geladen"
+          }
+        }
+      }
+    },
+    "Deck Not Saved": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deck nicht gesichert"
           }
         }
       }
@@ -547,6 +717,26 @@
         }
       }
     },
+    "Move to Deck": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ins Deck"
+          }
+        }
+      }
+    },
+    "Move to Maybe List": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf die Vielleicht-Liste"
+          }
+        }
+      }
+    },
     "Name": {
       "localizations": {
         "de": {
@@ -593,6 +783,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nicht legal"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         }
       }
@@ -697,6 +897,26 @@
         }
       }
     },
+    "Quit Anyway": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trotzdem beenden"
+          }
+        }
+      }
+    },
+    "Quit without saving your deck changes?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beenden, ohne deine Deck-Änderungen zu sichern?"
+          }
+        }
+      }
+    },
     "Ramp": {
       "localizations": {
         "de": {
@@ -747,12 +967,72 @@
         }
       }
     },
+    "Remove a Copy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Exemplar weniger"
+          }
+        }
+      }
+    },
+    "Remove Card": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karte entfernen"
+          }
+        }
+      }
+    },
+    "Remove from Deck": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus dem Deck entfernen"
+          }
+        }
+      }
+    },
+    "Remove from Maybe List": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von der Vielleicht-Liste entfernen"
+          }
+        }
+      }
+    },
     "Running": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Läuft"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sichern"
+          }
+        }
+      }
+    },
+    "Save your changes as a new version of the deck (⌘S)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Änderungen als neue Version des Decks sichern (⌘S)"
           }
         }
       }
@@ -1097,6 +1377,16 @@
         }
       }
     },
+    "Which card do you mean?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welche Karte meinst du?"
+          }
+        }
+      }
+    },
     "white": {
       "localizations": {
         "de": {
@@ -1113,6 +1403,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Siegbedingungen"
+          }
+        }
+      }
+    },
+    "“%@” is also part of another card.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%@“ ist auch Teil einer anderen Karte."
+          }
+        }
+      }
+    },
+    "“%@” is this deck's commander.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„%@“ ist der Commander dieses Decks."
           }
         }
       }
